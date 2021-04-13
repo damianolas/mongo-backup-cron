@@ -14,17 +14,3 @@ mongodump --db $DB --excludeCollection "Logs" --archive=$HOME/mongobackup/<NOME>
 
 echo "Copying compressed archive to S3 bucket: $S3"
 aws s3 cp $HOME/mongobackup/<NOME>.gz s3://$S3/$ENV/$BACKUP_NAME
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                                                                                                                              
-~                                                                                  
