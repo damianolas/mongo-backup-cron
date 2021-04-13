@@ -7,15 +7,25 @@ Si omette la parte di installazione della AWS CLI e dello IAM Role associato al 
 Si imposta un cronjob per un processo automatico periodico.
 
 # Procedura
-- Crea lo script "mongo_backup.sh" nel nodo
-- Crea EC2 AmazonLinux2  
-
-Installa mongoDB (https://docs.mongodb.com/manual/tutorial/install-mongodb-on-amazon/)  
-- Consenti l'accesso dall'esterno:
+- Crea la folder di backup locale
   ``` 
-  sudo vim /etc/mongod.conf
+  cd
+  mkdir mongobackup
   ```
-  e imposta:
+- Crea lo script "mongo-backup.sh" nel nodo
+- Aggiungi il permesso di execution:
+  ``` 
+  sudo chmod +x mongo-backup.sh
   ```
-  bindIp: 0.0.0.0
+- Crea una folder di log per il cron:
+  ```
+  sudo mkdir /var/log/mongo_backup
+  sudo chown ec2-user:ec2-user /var/log/mongo_backup
+  ```
+- Crea il cron (nell'esempio si esegue ogni notte alle 2):
+  ```
+  crontab -e  
+  ```
+  ```
+  0 2 * * * /home/ec2-user/mongo-backup.sh >>/var/log/mongo_backup/mongo_backup.log 2>&1
   ```
